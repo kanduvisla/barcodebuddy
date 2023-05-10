@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">BarCodeBuddy</string>
+    <string name="title_activity_home_view">HomeView</string>
 </resources>
