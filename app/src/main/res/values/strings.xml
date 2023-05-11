@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">BarCode Buddy</string>
     <string name="title_activity_home_view">HomeView</string>
+    <!-- Add new card Screen -->
+    <string name="add_card_manual_title">Manual entry</string>
+    <!-- About Screen -->
     <string name="about_description">This App helps you keep a copy of all your barcodes, so you
         don\'t have to keep a lot of cards in your wallet and you don\'t have to rely on spotty
         Internet in the shop.

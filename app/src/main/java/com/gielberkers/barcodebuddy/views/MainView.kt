@@ -108,7 +108,7 @@ fun MainView() {
                         Text("Home")
                     }
                     composable("add") {
-                        Text("Add Barcode")
+                        AddCardView()
                     }
                     composable("about") {
                         AboutView()
