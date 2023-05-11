@@ -82,6 +82,8 @@ fun AddCardManualView() {
                         db.barCodeDao().insertAll(
                             BarCode(name = enteredName.value, code = enteredBarcode.value)
                         )
+                        // TODO: Close View
+                        // TODO: Show Snackbar
                     }) {
                         Icon(imageVector = Icons.Default.Add, contentDescription = null)
                     }

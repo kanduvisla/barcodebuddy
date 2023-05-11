@@ -105,7 +105,7 @@ fun MainView() {
                         .padding(all = 20.dp)
                 ) {
                     composable("home") {
-                        Text("Home")
+                        HomeView()
                     }
                     composable("add") {
                         AddCardView()
