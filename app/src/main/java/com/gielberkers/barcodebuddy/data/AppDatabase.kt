@@ -11,21 +11,25 @@ abstract class AppDatabase: RoomDatabase() {
 }
 
 class DatabaseHelper {
-    @Volatile
-    private var appDatabase: AppDatabase? = null
+    companion object Singleton {
+        @Volatile
+        private var appDatabase: AppDatabase? = null
 
-    fun getAppDatabase(ctx: Context): AppDatabase {
-        if (appDatabase == null) {
-            synchronized(this) {
-                if (appDatabase == null) {
-                    appDatabase = Room.databaseBuilder(
-                        ctx,
-                        AppDatabase::class.java, "app-database"
-                    )
-                    .build()
+        fun getAppDatabase(ctx: Context): AppDatabase {
+            if (appDatabase == null) {
+                synchronized(this) {
+                    if (appDatabase == null) {
+                        appDatabase = Room.databaseBuilder(
+                            ctx,
+                            AppDatabase::class.java,
+                            "app-database"
+                        )
+                        .allowMainThreadQueries()
+                        .build()
+                    }
                 }
             }
+            return appDatabase!!
         }
-        return appDatabase!!
     }
 }
