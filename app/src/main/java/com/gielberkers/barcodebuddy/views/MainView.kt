@@ -22,11 +22,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.gielberkers.barcodebuddy.R
 import com.gielberkers.barcodebuddy.ui.theme.BarCodeBuddyTheme
 import com.gielberkers.barcodebuddy.views.components.DrawerContentButton
 import kotlinx.coroutines.launch
@@ -49,7 +51,7 @@ fun MainView() {
         topBar = {
             TopAppBar(
                 title = {
-                    Text("BarCodeBuddy")
+                    Text(stringResource(R.string.app_name))
                 },
                 navigationIcon = {
                     IconButton(onClick = {
@@ -96,7 +98,12 @@ fun MainView() {
                 modifier = Modifier
                     .padding(padding)
             ) {
-                NavHost(navController = navController, startDestination = "home") {
+                NavHost(
+                    navController = navController,
+                    startDestination = "home",
+                    modifier = Modifier
+                        .padding(all = 20.dp)
+                ) {
                     composable("home") {
                         Text("Home")
                     }
@@ -104,7 +111,7 @@ fun MainView() {
                         Text("Add Barcode")
                     }
                     composable("about") {
-                        Text("About")
+                        AboutView()
                     }
                 }
             }
@@ -114,7 +121,7 @@ fun MainView() {
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun DefaultPreview() {
+fun MainViewPreview() {
     BarCodeBuddyTheme {
         MainView()
     }

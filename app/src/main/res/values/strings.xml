@@ -1,4 +1,8 @@
 <resources>
-    <string name="app_name">BarCodeBuddy</string>
+    <string name="app_name">BarCode Buddy</string>
     <string name="title_activity_home_view">HomeView</string>
+    <string name="about_description">This App helps you keep a copy of all your barcodes, so you
+        don\'t have to keep a lot of cards in your wallet and you don\'t have to rely on spotty
+        Internet in the shop.
+    </string>
 </resources>
