@@ -1,9 +1,6 @@
 package com.gielberkers.barcodebuddy.views
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Divider
 import androidx.compose.material.DrawerValue
@@ -24,15 +21,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.gielberkers.barcodebuddy.ui.theme.BarCodeBuddyTheme
+import com.gielberkers.barcodebuddy.views.components.DrawerContentButton
 import kotlinx.coroutines.launch
 
 @Composable
 fun MainView() {
-    val scaffoldState = rememberScaffoldState(rememberDrawerState(DrawerValue.Open))
+    val scaffoldState = rememberScaffoldState(rememberDrawerState(DrawerValue.Closed))
     val coroutineScope = rememberCoroutineScope()
 
     Scaffold(
@@ -55,11 +52,11 @@ fun MainView() {
         },
         drawerContent = {
             DrawerContentButton(icon = Icons.Default.Add, text = "Add Barcode") {
-                
+                // TODO
             }
 
             DrawerContentButton(icon = Icons.Default.Star, text = "About this App") {
-
+                // TODO
             }
 
             Divider()
@@ -77,6 +74,7 @@ fun MainView() {
             )
         },
         content = { padding ->
+            // Change content according to selected option
             Column(
                 modifier = Modifier
                     .padding(padding)
@@ -85,27 +83,6 @@ fun MainView() {
             }
         }
     )
-}
-
-@Composable
-fun DrawerContentButton(
-    icon: ImageVector,
-    text: String,
-    onClick: () -> Unit
-) {
-    TextButton(
-        onClick = onClick
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(5.dp)
-        ) {
-            Icon(imageVector = icon, contentDescription = null)
-            Text(text)
-        }
-    }
 }
 
 @Preview(showBackground = true, showSystemUi = true)
