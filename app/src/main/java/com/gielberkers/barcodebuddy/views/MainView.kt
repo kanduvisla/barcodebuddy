@@ -13,6 +13,7 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.rememberDrawerState
@@ -23,6 +24,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.gielberkers.barcodebuddy.ui.theme.BarCodeBuddyTheme
 import com.gielberkers.barcodebuddy.views.components.DrawerContentButton
 import kotlinx.coroutines.launch
@@ -31,6 +35,14 @@ import kotlinx.coroutines.launch
 fun MainView() {
     val scaffoldState = rememberScaffoldState(rememberDrawerState(DrawerValue.Closed))
     val coroutineScope = rememberCoroutineScope()
+    val navController = rememberNavController()
+
+    fun navigateTo(route: String) {
+        navController.navigate(route)
+        coroutineScope.launch {
+            scaffoldState.drawerState.close()
+        }
+    }
 
     Scaffold(
         scaffoldState = scaffoldState,
@@ -51,15 +63,20 @@ fun MainView() {
             )
         },
         drawerContent = {
+            DrawerContentButton(icon = Icons.Default.Home, text = "Home") {
+                navigateTo("home")
+            }
+
             DrawerContentButton(icon = Icons.Default.Add, text = "Add Barcode") {
-                // TODO
+                navigateTo("add")
             }
 
             DrawerContentButton(icon = Icons.Default.Star, text = "About this App") {
-                // TODO
+                navigateTo("about")
             }
 
             Divider()
+
             TextButton(
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
@@ -79,7 +96,17 @@ fun MainView() {
                 modifier = Modifier
                     .padding(padding)
             ) {
-                Text("BodyContent")
+                NavHost(navController = navController, startDestination = "home") {
+                    composable("home") {
+                        Text("Home")
+                    }
+                    composable("add") {
+                        Text("Add Barcode")
+                    }
+                    composable("about") {
+                        Text("About")
+                    }
+                }
             }
         }
     )
