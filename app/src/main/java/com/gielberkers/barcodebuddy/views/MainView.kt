@@ -1,6 +1,5 @@
 package com.gielberkers.barcodebuddy.views
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Divider
 import androidx.compose.material.DrawerValue
@@ -92,27 +91,20 @@ fun MainView() {
                 }
             )
         },
-        content = { padding ->
+        content = { it
             // Change content according to selected option
-            Column(
-                modifier = Modifier
-                    .padding(padding)
+            NavHost(
+                navController = navController,
+                startDestination = "home"
             ) {
-                NavHost(
-                    navController = navController,
-                    startDestination = "home",
-                    modifier = Modifier
-                        .padding(all = 20.dp)
-                ) {
-                    composable("home") {
-                        HomeView()
-                    }
-                    composable("add") {
-                        AddCardView()
-                    }
-                    composable("about") {
-                        AboutView()
-                    }
+                composable("home") {
+                    HomeView()
+                }
+                composable("add") {
+                    AddCardView()
+                }
+                composable("about") {
+                    AboutView()
                 }
             }
         }

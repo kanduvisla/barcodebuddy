@@ -34,7 +34,8 @@ fun AddCardManualView() {
     val db = DatabaseHelper.getAppDatabase(LocalContext.current)
 
     Card(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
+        elevation = 5.dp
     ) {
         Surface(
             modifier = Modifier
