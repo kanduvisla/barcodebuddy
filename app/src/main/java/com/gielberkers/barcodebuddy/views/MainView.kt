@@ -24,9 +24,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.gielberkers.barcodebuddy.R
 import com.gielberkers.barcodebuddy.ui.theme.BarCodeBuddyTheme
 import com.gielberkers.barcodebuddy.views.components.DrawerContentButton
@@ -98,13 +100,19 @@ fun MainView() {
                 startDestination = "home"
             ) {
                 composable("home") {
-                    HomeView()
+                    HomeView(navController = navController)
                 }
                 composable("add") {
                     AddCardView()
                 }
                 composable("about") {
                     AboutView()
+                }
+                composable(
+                    "details/{uid}",
+                    arguments = listOf(navArgument("uid") { type = NavType.IntType })
+                ) {
+                   DetailsViewByUID(barCodeUID = it.arguments?.getInt("uid") ?: 0)
                 }
             }
         }

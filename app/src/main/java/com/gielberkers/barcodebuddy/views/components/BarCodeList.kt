@@ -7,16 +7,26 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.gielberkers.barcodebuddy.data.BarCode
 
 @Composable
-fun BarCodeList(barCodes: List<BarCode>) {
+fun BarCodeList(
+    barCodes: List<BarCode>,
+    navController: NavController
+) {
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(12.dp),
         contentPadding = PaddingValues(all = 20.dp)
     ) {
         items(barCodes) {
-            BarCodeCard(barCode = it)
+            BarCodeCard(
+                barCode = it,
+                onClick = {
+                    navController.navigate("details/${it.uid}")
+                }
+            )
         }
     }
 }
@@ -29,6 +39,7 @@ fun BarCodeListPreview() {
             BarCode(name = "Store #1", code = "2620633371049"),
             BarCode(name = "Store #2", code = "2622642378002"),
             BarCode(name = "Store #3", code = "2620633371049")
-        )
+        ),
+        navController = rememberNavController()
     )
 }

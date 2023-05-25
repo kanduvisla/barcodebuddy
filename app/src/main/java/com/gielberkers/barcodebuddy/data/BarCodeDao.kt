@@ -7,6 +7,9 @@ import androidx.room.Query
 
 @Dao
 interface BarCodeDao {
+    @Query("SELECT * FROM BarCode WHERE uid =:uid")
+    fun get(uid: Int): BarCode
+
     @Query("SELECT * FROM BarCode")
     fun getAll(): List<BarCode>
 

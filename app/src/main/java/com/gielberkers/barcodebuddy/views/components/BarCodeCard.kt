@@ -1,6 +1,7 @@
 package com.gielberkers.barcodebuddy.views.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -42,9 +43,13 @@ fun createBitmap(code: String): ImageBitmap? {
 }
 
 @Composable
-fun BarCodeCard(barCode: BarCode) {
+fun BarCodeCard(
+    barCode: BarCode,
+    onClick: () -> Unit = {}
+) {
     Card(
-        elevation = 5.dp
+        elevation = 5.dp,
+        modifier = Modifier.clickable { onClick() }
     ) {
         Surface(modifier = Modifier
             .padding(all = 20.dp)
